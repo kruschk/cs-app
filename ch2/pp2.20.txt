@@ -1,0 +1,20 @@
+Simplifying equation 2.5 for w = 4, we have:
+
+T2U_w(x) = { x + 2^w, x < 0  = { x + 2^4, x < 0  = { x + 16, x < 0
+           { x,       x >= 0   { x,       x >= 0   { x,      x >= 0
+
+The above shows that if the given two's-complement value is negative, we
+simply add 16 to compute the unsigned value, while if it's positive, the
+value remains the same. We can use the formula to complete the table much
+more easily:
+
+x  | T2U_4(x) = B2U_4(T2B_4(x))
+---+----------------------------------------------------------------------
+-1 | -1 + 16 = 15
+-5 | -5 + 16 = 11
+-6 | -6 + 16 = 10
+-4 | -4 + 16 = 12
+ 1 |            1
+ 8 | 8 cannot be represented with a 4-bit two's complement bit-field, i.e.,
+   | evaluating T2U_4(8) = B2U_4(T2B_4(8)) is undefined, because 8 is
+   | outside the domain of T2B_4.

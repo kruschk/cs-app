@@ -1,0 +1,37 @@
+A.
+To compute an index, the compiler adds two to x, compares the result to
+eight, then uses the unsigned ja instruction. On a more abstract level, the
+compiler shifts the range of values from [-2, 6] to [0, 8], then takes
+advantage of the fact that the range becomes unsigned so it can use a single
+conditional jump instruction.
+
+Six distinct labels were placed in the jump table: .L9, .L5, .L6, .L7, .L2,
+and .L8.
+
+From the above points, we can conclude that the switch statement used six
+*distinct* values in the closed range [-2, 6], and that one of those
+distinct values was -2 and another was 6. One of those labels could be the
+default label.
+
+From the ordering of the jump table, we see that:
+Case | Shifted | Label
+-----+---------+------
+  -2 |       0 | .L9
+  -1 |       1 | .L5
+   0 |       2 | .L6
+   1 |       3 | .L7
+   2 |       4 | .L2
+   3 |       5 | .L7
+   4 |       6 | .L8
+   5 |       7 | .L2
+   6 |       8 | .L5
+
+Ignoring .L2, which is the default case, we can conclude that the switch
+statement defines cases for -2, -1, 0, 1, 3, 4, and 6. We know that .L2
+corresponds with the default case because it's used as the jump target for
+the ja instruction.
+
+B.
+The cases that appear more than once in the jump table must have occurred more
+than once in the switch statement, except for .L2, which is the default
+label. The associated cases are .L5: {-1, 6}, and .L7: {1, 3}.

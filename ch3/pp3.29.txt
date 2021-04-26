@@ -1,0 +1,37 @@
+A.
+long sum = 0;
+long i = 0;
+goto test;
+loop:
+    if (i & 1) {
+        goto test;
+    }
+    sum += i;
+    i++;
+test:
+    if (i < 10) {
+        goto loop;
+    }
+
+Translating this directly into a jump-to-middle loop will result in an an
+infinite loop.
+
+B.
+Jumping to a new label, `update`, should fix the problem.
+long sum = 0;
+long i = 0;
+goto test;
+loop:
+    if (i & 1) {
+        goto update;
+    }
+    sum += i;
+update:
+    i++;
+test:
+    if (i < 10) {
+        goto loop;
+    }
+
+I misinterpreted this question a bit and used `goto`s instead of a `while`,
+but the answer is still essentially the same.

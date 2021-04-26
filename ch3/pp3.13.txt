@@ -1,0 +1,15 @@
+A.
+data_t: int
+COMP: <
+
+B.
+data_t: short
+COMP: >=
+
+C.
+data_t: unsigned char
+COMP: <=
+
+D.
+data_t: long or unsigned long
+COMP: !=

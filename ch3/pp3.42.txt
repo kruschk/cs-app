@@ -1,0 +1,31 @@
+A.
+struct ACE {
+    short v;
+    struct ACE *p;
+};
+
+short test(struct ACE *ptr);
+
+# short test(struct ACE *ptr)
+# ptr in %rdi
+test:
+    movl    $1, %eax        # a <- 1
+    jmp     .L2
+.L3:
+    imulq   (%rdi), %rax    # a <- a*M[ptr] = a*ptr->v
+    movq    2(%rdi), %rdi   # ptr <- M[2 + ptr] = ptr->p
+.L2:
+    testq   %rdi, %rdi      # test ptr & ptr
+    jne     .L3             # jump if != 0
+    rep; ret
+
+short test(struct ACE *ptr) {
+    for (int result = 1; NULL != ptr; ptr = ptr->p) {
+        result *= ptr->v;
+    }
+    return result;
+}
+
+struct ACE implements a singly-linked list. Member v is the value, and p is a
+pointer to the next element in the list. test is an accumulator that
+calculates the product of the values in the list.

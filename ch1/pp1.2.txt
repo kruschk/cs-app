@@ -1,0 +1,17 @@
+My solution:
+P_new = I*P_old
+P_new = (1 - a)P_old + a*P_old*k
+P_new = P_old*(1 - a + a*k)
+I = P_new/P_old = (1 - a + a*k)
+I + a - 1 = a*k
+k = (I + a - 1)/a
+k = (4 + 0.9 - 1)/0.9 = 4.33...
+
+Book's solution (I don't think it's correct):
+S = 1/(1 - a + a/k)
+S*(1 - a + a/k) = 1
+S - S*a) + S*a/k = 1
+S*a/k = 1 - S + S*a
+k = S*a/(1 - S + S*a)
+k = 4*0.9/(1 - 4 + 4*0.9)
+k = 6

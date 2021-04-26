@@ -1,0 +1,18 @@
+A.
+  0xffffd754
+- 0xffffb754
+------------
+  0x00002000
+
+[0x00002000] = 2*16^3 = 8129 = 2^13
+
+B.
+With a 128 byte nop slide, an attacker can space out his guesses evenly across
+the expected address space. Since any guess within that range of 128 bytes
+will cause his program to run, this approach effectively divides the randomised
+address range by the length of the nop slide.
+
+8192/128 = 2^13/2^7 = 2^(13 - 7) = 2^6 = 64
+
+The attacker could therefore try all valid starting addresses with only 64
+guesses.

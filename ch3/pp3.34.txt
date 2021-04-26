@@ -1,0 +1,18 @@
+A.
+%rbx: x     = a0
+%r15: 1 + x = a1
+%r14: 2 + x = a2
+%r13: 3 + x = a3
+%r12: 4 + x = a4
+%rbp: 5 + x = a5
+
+B.
+(%rsp): 6 + x = a6
+8(%rsp): 7 + x = a7
+
+C.
+There are only 6 callee-saved registers available, so the remaining 2 must be
+stored on the stack.
+
+Where's a8? Solution makes no mention of it, so it must be an error in the
+question.

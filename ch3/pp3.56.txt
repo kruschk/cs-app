@@ -1,0 +1,41 @@
+double simplefun(double x) {
+    return EXPR(x);
+}
+
+A.
+    vmovsd  .LC1(%rip), %xmm1
+    vandpd  %xmm1, %xmm0, %xmm0
+.LC1:
+    .long   4294967295
+    .long   2147483647
+    .long   0
+    .long   0
+This code computes:
+  [xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx]
+& [0111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111]
+-----------------------------------------------------------------------------------
+  [0xxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx]
+This operation removes the sign bit from the IEEE-754 floating point
+representation. The resulting value is the absolute value of the argument.
+
+B.
+    vxorpd  %xmm0, %xmm0, %xmm0
+This operation sets all bits in the IEEE-754 floating point representation to
+0. Clearing the register is equivalent to setting its value to 0.0.
+
+C.
+    vmovsd  .LC2(%rip), %xmm1
+    vxorpd  %xmm1, %xmm0, %xmm0
+.LC2:
+    .long   0
+    .long   -2147483648
+    .long	0
+    .long	0
+This code computes:
+  [xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx]
+^ [1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000]
+-----------------------------------------------------------------------------------
+  [yxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx]
+We can see that y = 1 if x = 0, and y = 0 if x = 1. Put another way, the
+operation toggles the sign bit. Toggling the sign bit is the same as negating
+the value stored in the register.

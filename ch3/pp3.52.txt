@@ -1,0 +1,31 @@
+A.
+double g1(double a, long b, float c, int d);
+a: %xmm0
+b: %rdi
+c: %xmm1
+d: %esi
+return: %xmm0
+
+B.
+double g2(int a, double *b, float *c, long d);
+a: %edi
+b: %rsi
+c: %rdx
+d: %rcx
+return: %xmm0
+
+C.
+double g3(double *a, double b, int c, float d);
+a: %rdi
+b: %xmm0
+c: %esi
+d: %xmm1
+return: %xmm0
+
+D.
+double g4(float a, int *b, float c, double d);
+a: %xmm0
+b: %rdi
+c: %xmm1
+d: %xmm2
+return: %xmm0

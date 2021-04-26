@@ -1,0 +1,15 @@
+LEA := (a << k) + b, where 0 <= k <= 3
+
+Case 1: b = 0
+We can compute (a << k) = a*2^k
+a << 0 = a*1 = a
+a << 1 = a*2 = 2a
+a << 2 = a*4 = 4a
+a << 3 = a*8 = 8a
+
+Case 2: b = a
+We can compute (a << k) + a = a*2^k + a
+a << 0 = a*1 + a = 2a
+a << 1 = a*2 + a = 3a
+a << 2 = a*4 + a = 5a
+a << 3 = a*8 + a = 9a

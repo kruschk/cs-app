@@ -1,0 +1,21 @@
+A.
+This instruction takes advantage of the self-negating property of xor to clear
+a register (i.e., set it to 0).
+
+B.
+movq $0, $rcx
+
+C.
+xorq %rcx, %rcx:
+1 + 1 + 1 = 3 bytes (nope, see below)
+
+0000000000000000 <f>:
+   0:	31 c0                	xor    %eax,%eax
+   2:	c3                   	retq   
+
+movq $0, %rcx:
+1 + 8 + 1 = 10 bytes (nope, see below)
+
+0000000000000000 <f>:
+   0:	b8 00 00 00 00       	mov    $0x0,%eax
+   5:	c3                   	retq   

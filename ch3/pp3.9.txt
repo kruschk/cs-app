@@ -1,0 +1,13 @@
+long shift_left4_rightn(long x, long n) {
+    x <<= 4;
+    x >>= n;
+    return x;
+}
+
+# long shift_left4_rightn(long x, long n)
+# x in %rdi, n in %rsi
+shift_left4_rightn:
+    movq %rdi, %rax # Get x
+    shlq $4, %rax   # x <<= 4
+    movl %esi, %ecx # Get n (4 bytes)
+    sarq %cl, %rax  # x >>= n

@@ -1,0 +1,3 @@
+The given code will always return true. Since subtraction is performed by
+adding the additive inverse, the original values will always be recovered by
+the `sum - ? == ?` expressions, so these tests will never return false.

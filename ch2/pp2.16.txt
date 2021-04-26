@@ -1,0 +1,32 @@
+a:
+Hex  | Binary
+-----+-------------
+0xD4 | 0b 1101 0100
+0x64 | 0b 0110 0100
+0x72 | 0b 0111 0010
+0x44 | 0b 0100 0100
+
+a << 2:
+Hex  | Binary
+-----+-------------
+0x50 | 0b 0101 0000
+0x90 | 0b 1001 0000
+0xC8 | 0b 1100 1000
+0x10 | 0b 0001 0000
+
+a >> 3 (logical):
+Hex  | Binary
+-----+-------------
+0x1A | 0b 0001 1010
+0x0C | 0b 0000 1100
+0x0E | 0b 0000 1110
+0x08 | 0b 0000 1000
+
+a >> 3 (arithmetic):
+Hex  | Binary
+-----+-------------
+0xFA | 0b 1111 1010
+0x0C | 0b 0000 1100 (book says 0xEC, but online calculator agrees with me)
+0x0E | 0b 0000 1110
+0x08 | 0b 0000 1000 (book says 0xE9, but online calculator agrees with me)
+

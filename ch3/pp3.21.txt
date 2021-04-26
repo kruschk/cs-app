@@ -1,0 +1,32 @@
+short test(short x, short y) {
+    short val = 12 + y;
+    if (x < 0) {
+        if (x < y) {
+            val = x*y;
+        } else {
+            val = x | y;
+        }
+    } else if (y >= 10) {
+        val = x/y;
+    }
+    return val;
+}
+
+// short test(short x, short y)
+// x in %rdi, y in %rsi
+test:
+    leaq    12(%rsi), %rbx # b = 12 + y
+    testq   %rdi, %rdi     # x & x
+    jge     .L2            # jump if >= 0
+    movq    %rdi, %rbx     # b = x
+    imulq   %rsi, %rbx     # b = b*y
+    movq    %rdi, %rdx     # d = x
+    orq     %rsi, %rdx     # d = d | y
+    cmpq    %rsi, %rdi     # compare x:y
+    cmovge  %rdx, %rbx     # if >=, b = d
+    ret
+.L2:
+    idivq   %rsi, %rdi # x = x/y (2-argument idivq doesn't exist (???))
+    cmpq    $10, %rsi  # y:10
+    cmovge  %rdi, %rbx # if >=, b = x
+    ret

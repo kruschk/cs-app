@@ -1,0 +1,10 @@
+movb $0xF, (%ebx) - Memory references must use quad-word registers.
+movl %rax, (%rsp) - `%rax` is a quad-word register; `movl` expects a
+                    double-word register.
+movw (%rax), 4(%rsp) - The source and destination may not both be memory
+                       references.
+movb %al, %sl - Register `%sl` does not exist.
+movq %rax, $0x123 - The destination may not be an immediate value.
+movl %eax, %rdx - `%rdx` is a quad-word register; `movl` expects a double-word
+                  register. 
+movb %si, 8(%rbp) - `%si` is a word register; `movb` expects a byte register.

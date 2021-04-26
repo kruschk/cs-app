@@ -1,0 +1,6 @@
+Step      | *x                                    | *y
+----------+---------------------------------------+------
+Initially | a                                     | b
+Step 1    | a                                     | a ^ b
+Step 2    | a ^ (a ^ b) = (a ^ a) ^ b = 0 ^ b = b | a ^ b
+Step 3    | b                                     | b ^ (a ^ b) = b ^ b ^ a = a

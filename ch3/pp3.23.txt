@@ -1,0 +1,25 @@
+A.
+x: %rbx
+y: %rcx
+n: %rdx
+
+B.
+By storing x in a local variable.
+
+C.
+# short dw_loop(short x)
+# x initially in %rdi
+dw_loop:
+    movq %rdi, %rbx         # b <- x
+    movq %rdi, %rcx         # y <- x
+    idivq $9, %rcx          # y <- c/9
+    leaq (,%rdi,4), %rdx    # n <- x*4
+.L2:
+    leaq 5(%rbx,%rcx), %rcx # y <- 5 + b + y
+    subq $1, %rdx           # n <- n - 1
+    testq %rdx, %rdx        # n & n
+    jg .L2                  # jump if > 0
+    rep; ret
+
+There are a lot of mistakes in the problems and solutions in this edition,
+unfortunately; see https://csapp.cs.cmu.edu/3e/errata.html.

@@ -1,0 +1,6 @@
+`show_bytes` should print the following bytes (line 2 added for clarity):
+m  n  o  p  q  r
+6D 6E 6F 70 71 72
+
+Note that the terminating null byte (0x00) is not printed, because `strlen`
+does not count it.

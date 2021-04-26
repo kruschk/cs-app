@@ -1,0 +1,26 @@
+A.
+p: 0
+s.x: 8
+s.y: 8 + 2 = 10
+next: 8 + 2 + 2 = 12
+
+B.
+8 + 2 + 2 + 8 = 20
+
+C.
+# void st_init(struct test *st)
+# st in %rdi
+st_init:
+movl	8(%rdi), %eax   # a <- M[8 + st] = st->s.x
+movl	%eax, 10(%rdi)  # st->s.y <- a = st->s.x
+leaq	10(%rdi), %rax  # a <- 10 + st = &(st->s.y)
+movq	%rax, (%rdi)    # st->p <- a = &(st->s.y)
+movq	%rdi, 12(%rdi)  # st->next <- st
+ret
+
+void st_init(struct test *st) {
+    st->s.y = st->s.x;
+    st->p = &(st->s.y);
+    st->next = st;
+}
+

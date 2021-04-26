@@ -1,0 +1,10 @@
+A.
+No, the same issue will persist. Despite `asize` being a 64 bit unsigned
+number, when passed to `malloc`, it will be truncated to a 32 bit unsigned
+number; therefore, the exact same vulnerability will be present.
+
+B.
+Using a function such as `tmult_ok`, defined in practice problems 2.35 and
+2.36, the vulnerability can be patched by detecting overflow before calling
+`malloc`, and taking some appropriate action (such as returning `NULL`) if
+it occurs.

@@ -1,0 +1,15 @@
+A.
+0x00 27 C8 F8 = 0b0000 0000 0010 0111 1100 1000 1111 1000
+0x4A 1F 23 E0 = 0b0100 1010 0001 1111 0010 0011 1110 0000
+
+B.
+00000000001001111100100011111000
+  01001010000111110010001111100000
+nnnnnnnnnnnyyyyyyyyyyyyyyyyyyyyynn
+
+21 of the 32 bits match.
+
+C.
+- The leading 11 bits and trailing 2 bits of the expanded field do not match.
+- The `int` is fully embedded in the `float`, except for the `int`'s
+  most-significant bit.

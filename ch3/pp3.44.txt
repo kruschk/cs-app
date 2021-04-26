@@ -1,0 +1,68 @@
+A.
+struct P1 {
+    short i;
+    int c;
+    int *j;
+    short *d;
+};
+ i  c    j        d             i    c    j        d
+ v  v    v        v             v    v    v        v
+[ii|cccc|jjjjjjjj|dddddddd] -> [ii__|cccc|jjjjjjjj|dddddddd]
+ ^  ^    ^        ^             ^    ^    ^        ^
+ 0  2    6       14             0    4    8       16
+Alignment: 8 bytes
+Total size: 24 bytes
+
+B.
+struct P2 {
+    int i[2];
+    char c[8];
+    short s[4];
+    long *j;
+};
+ i         c               s           j
+ v         v               v           v
+[iiii|iiii|c|c|c|c|c|c|c|c|ss|ss|ss|ss|jjjjjjjj]
+ ^         ^               ^           ^
+ 0         8              16          24
+Alignment: 8 bytes
+Total size: 32 bytes
+
+C.
+struct P3 {
+    long w[2];
+    int *c[2];
+};
+ w                 c
+ v                 v
+[wwwwwwww|wwwwwwww|cccccccc|cccccccc]
+ ^                 ^
+ 0                16
+Alignment: 8 bytes
+Total size: 32 bytes
+
+D.
+struct P4 {
+    char w[16];
+    char *c[2];
+};
+ w                               c
+ v                               v
+[w|w|w|w|w|w|w|w|w|w|w|w|w|w|w|w|cccccccc|cccccccc]
+ ^                               ^
+ 0                              16
+Alignment: 8 bytes
+Total size: 32 bytes
+
+E.
+struct P5 {
+    struct P4 a[2];
+    struct P1 t;
+};
+ a                                                                 t
+ v                                                                 v
+[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa|aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa|tttttttttttttttttttttttt]
+ ^                                                                 ^
+ 0                                                                64
+Alignment: 8 bytes
+Total size: 88 bytes

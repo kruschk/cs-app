@@ -1,0 +1,12 @@
+        Hex          |       Unsigned       |   Two's complement
+Original | Truncated | Original | Truncated | Original | Truncated
+---------+-----------+----------+-----------+----------+----------
+       1 |         1 |        1 |         1 |        1 |         1
+       3 |         3 |        3 |         3 |        3 |         3
+       5 |         5 |        5 |         5 |        5 |        -3
+       C |         4 |       12 |         4 |       -4 |        -4
+       E |         6 |       14 |         6 |       -2 |        -2
+
+The book says the last three entries in the last column should be 5, 4, and 6.
+None of these make sense because TMin_3 = -2^(3-1) = -4 and TMax_3 = 2^(3-1)-1
+= 3, so the values must be in the range [-4, 3].

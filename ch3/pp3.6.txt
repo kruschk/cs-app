@@ -1,0 +1,8 @@
+Instruction               | Result
+--------------------------+---------------------------------------
+leaq 9*(%rdx), %rax       | %rax <- 9 + %rdx
+leaq (%rdx,%rbx), %rax    | %rax <- %rdx + %rbx
+leaq (%rdx,%rbx,3), %rax  | %rax <- %rdx + %rbx*3
+leaq 2(%rbx,%rbx,7), %rax | %rax <- 2 + %rbx + %rbx*7 = 2 + %rbx*8
+leaq 0xE(,%rdx,3), %rax   | %rax <- 14 + %rdx*3
+leaq 6(%rbx,%rdx,7), %rax | %rax <- 6 + %rbx + %rdx*7

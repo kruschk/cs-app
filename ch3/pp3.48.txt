@@ -1,0 +1,22 @@
+A.
+No canary:
+ _______________________
+|                       | 32
+|vv vv vv vv vv vv vv vv| 24 v
+|                       | 16
+|            bb bb bb bb| 8
+|bb bb bb bb bb bb bb bb| 0  <- %rsp = buf
+ -----------------------
+Canary:
+ _______________________
+|                       | 48
+|cc cc cc cc cc cc cc cc| 40 canary
+|                       | 32
+|            bb bb bb bb| 24
+|bb bb bb bb bb bb bb bb| 16 <- buf
+|vv vv vv vv vv vv vv vv| 8  v
+|                       | 0  <- %rsp
+ -----------------------
+
+B.
+An overflow of buf will not corrupt the value of v.

@@ -1,0 +1,10 @@
+x  | T2U_4(x) = B2U_4(T2B_4(x))
+---+-----------------------------------------------------------------------
+-1 |             B2U_4([1111]) = 15
+-5 | B2U_4([1011]) = 8 + 2 + 1 = 11
+-6 |     B2U_4([1010]) = 8 + 2 = 10
+-4 |     B2U_4([1100]) = 8 + 4 = 12
+ 1 |             B2U_4([0001]) =  1
+ 8 | 8 cannot be represented with a 4-bit two's complement bit-field, i.e.,
+   | evaluating T2U_4(8) = B2U_4(T2B_4(8)) is undefined, because 8 is
+   | outside the domain of T2B_4.

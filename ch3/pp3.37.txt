@@ -1,0 +1,7 @@
+Expression | Type    | Value              | Assembly
+-----------+---------+--------------------+---------------------------
+P[1]       | short   | M[x_P + 2]         | movw 2(%rdx) %ax
+P + 3 + i  | short * | x_P + 2*i + 6      | leaq 6(%rdx,%rcx,2) %rax
+P[i*6 - 5] | short   | M[x_P + 12*i - 10] | movw -10(%rdx,%rcx,12) %ax # s must be 1, 2, 4, or 8 (???)
+P[2]       | short   | M[x_P + 4]         | movw 2(%rdx) %ax
+&P[i + 2]  | short * | x_P + 2*i + 4      | leaq 4(%rdx,%rcx,2) %rax

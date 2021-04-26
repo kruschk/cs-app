@@ -1,0 +1,16 @@
+src_t         | dest_t        | Instruction
+---------------------------------------------------
+long          | long          | movq (%rdi), %rax
+              |               | movq %rax, (%rsi)
+char          | int           | movzbl (%rdi), %eax
+              |               | movl %eax, (%rsi)
+char          | unsigned      | movzbl (%rdi), %eax
+              |               | movl %eax, (%rsi)
+unsigned char | long          | movzbq (%rdi), %rax
+              |               | movq %rax, (%rsi)
+int           | char          | movl (%rdi), %eax
+              |               | movb %al, (%rsi)
+unsigned      | unsigned char | movl (%rdi), %eax
+              |               | movb %al, (%rsi)
+char          | short         | movzbw (%rdi), %ax
+              |               | movw %ax, (%rsi)

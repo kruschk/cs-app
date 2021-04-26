@@ -1,0 +1,42 @@
+0 = 0x00000000
+1077836128 = 0x40400000
+                                   exp
+                              vvv vvvv vvvv
+[40 40 00 00 00 00 00 00] = [0100 0000 0100 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000]
+                             ^              ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^ ^^^^
+                            sign                                          frac
+
+Since e != [000 0000 0000] and e != [111 1111 1111], this is a normalised
+IEEE-754 floating point value. Further, it is 8 bytes, and therefore
+double-precision. Given:
+k = 11              (width of exp)
+n = 52              (width of frac)
+s = 0               (sign bit)
+e = [100 0000 0100] (exponent)
+  = 2^10 + 2^2
+  = 1024 + 4
+  = 1028
+f = 0.0             (fractional part)
+
+Compute the bias:
+bias = 2^(k - 1) - 1
+     = 2^(11 - 1) - 1
+     = 2^10 - 1
+     = 1024 - 1
+     = 1023
+
+Compute the biased exponent:
+E = e - bias
+  = 1028 - 1023
+  = 5
+
+Compute the mantissa:
+M = 1.0 + f
+  = 1.0 + 0.0
+  = 1.0
+
+Compute the value:
+V = (-1)^s*M*2^E
+  = (-1)^0*1.0*2^5
+  = 1*1.0*2^5
+  = 32.0

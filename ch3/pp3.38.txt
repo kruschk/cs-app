@@ -1,0 +1,27 @@
+#define M 5
+#define N 7
+
+long P[M][N];
+long Q[N][M];
+
+long sum_element(long i, long j) {
+    return P[i][j] + Q[j][i];
+}
+
+# long sum_element(long i, long j)
+# i in %rdi, j in %rsi
+sum_element:
+    leaq	0(,%rdi,8), %rdx   	# %rdx <- %rdi*8            = 8i
+    subq	%rdi, %rdx         	# %rdx <- %rdx - %rdi       = 8i - i = 7i
+    addq	%rsi, %rdx         	# %rdx <- %rdx + %rsi       = 7i + j
+    leaq	(%rsi,%rsi,4), %rax # %rax <- %rsi + %rsi*4     = j + 4j = 5j
+    addq	%rax, %rdi          # %rdi <- %rdi + %rax       = i + 5j
+    movq	Q(,%rdi,8), %rax    # %rax <- Q + %rdi*8        = Q + 8(i + 5j)
+                                #                           = Q[j][i]
+                                #                           = Q + 8(5j + i)
+    addq	P(,%rdx,8), %rax    # %rax <- %rax + P + %rdx*8 = Q + 8(5j + i) + P + 8(7i + j)
+                                #                           = Q[j][i]       + P[i][j]
+    ret
+
+Matching terms with equation 3.1, we can see from Q[j][i] = Q + 8(5j + i) that
+M = 5. Similarly, from P[i][j] = P + 8*(7i + j), we see that N = 7.

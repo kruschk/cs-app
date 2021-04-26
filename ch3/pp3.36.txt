@@ -1,0 +1,7 @@
+Array | Element size | Total size | Start address | Element i
+-------------------------------------------------------------
+P     |            4 | 4*5 = 20   | x_P           | x_P + 4*i
+Q     |            2 | 2*2 = 4    | x_Q           | x_Q + 2*i
+R     |            8 | 8*9 = 72   | x_R           | x_R + 8*i
+S     |            8 | 8*10 = 80  | x_S           | x_S + 8*i
+T     |            8 | 8*2 = 16   | x_T           | x_T + 8*i

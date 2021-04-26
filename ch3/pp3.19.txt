@@ -1,0 +1,15 @@
+A.
+Given T_OK = 25; T_ran = T(p = 0.5) = 45
+
+T(p) = T_OK + p*T_MP
+T_MP = (T(p) - T_OK)/p
+     = (T(0.5) - T_OK)/0.5
+     = (T_ran - T_OK)/0.5
+     = (45 - 25)/0.5
+     = 20/0.5
+     = 40
+
+B.
+T_miss = T_OK + T_MP
+       = 25 + 40
+       = 65

@@ -1,0 +1,24 @@
+A.
+Iteration | first | last
+----------+-------+------------------
+0         | 0     | 2*k + 1 - 1 = 2*k
+1         | 1     | 2*k - 1
+2         | 2     | 2*k - 2
+...       | ...   | ...
+k - 2     | k - 2 | k + 2
+k - 1     | k - 1 | k + 1
+k (done)  | k     | k
+The variables `first` and `last` will both store the value `k`.
+
+B.
+This occurs because the middle element is being "swapped" with itself by
+`inplace_swap`, however, `inplace_swap` does not work if two pointers to the
+same location are passed to it. This is because, in its first step,
+(`*y = *x ^ *y`), the result of `*x ^ *y` is stored in both *x and *y, since
+both pointers refer to the same location. Further, since both pointers refer
+to the same location, *x = *y, and, since a ^ a = 0 always, the function
+will always store the value 0 in the given memory location (x = y).
+
+C.
+We can easily remedy the situation by replacing the `<=` comparison with a
+`<`.

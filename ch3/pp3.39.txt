@@ -1,0 +1,17 @@
+Equation 3.1:
+Given an array declaration T D[R][C], array element D[i][j] is at memory address
+&D[i][j] = x_D + L*(C*i + j)
+
+We know that L = 4 (because the array elements are of type int) and C = 16.
+Equation 3.1 simplifies to:
+&D[i][j] = x_D + 4*(16*i + j)
+
+Substituting values for Aptr, Bptr, and Bend into the above, we have:
+Aptr:
+&A[i][0] = x_A + 4*(16*i + 0) = x_A + 64*i
+
+Bptr:
+&B[0][k] = x_B + 4*(16*0 + k) = x_B + 4*k
+
+Bend:
+&B[N][k] = x_B + 4*(16*16 + k) = x_B + 1024 + k = x_B + k + 1024

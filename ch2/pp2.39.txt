@@ -1,0 +1,18 @@
+When bit position n is the most significant bit, the bit vector will look
+something like the following:
+
+[1111...1110...]
+ ^        ^
+ n        m
+[1111]
+[1110]
+[1100]
+[1000]
+[0000]
+[0000]
+
+We can see that x << (n + 1) = x << w, where w is the width of the bit vector.
+If we shift left as many times as there are bits, this is effectively the same
+as clearing every bit (i.e., setting them all to 0), so x << (n + 1) = 0. Form
+B can therefore be rewritten as -(x << m). It cannot be simplified any
+further.

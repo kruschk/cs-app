@@ -1,0 +1,15 @@
+Expression         | Type   | Code
+-------------------+--------+---------------------
+up->t1.u           | long   | movq  (%rdi), %rax
+                   |        | movq  %rax, (%rsi)
+up->t1.v           | short  | movw  8(%rdi), %ax
+                   |        | movw  %ax, (%rsi)
+&up->t1.w          | char * | leaq  10(%rdi), %rax
+                   |        | movq  %rax, (%rsi)
+up->t2.a           | int *  | movq  %rdi, (%rsi)
+up->t2.a[up->t1.u] | int    | movq  (%rdi), %rax        # x <- up->t1.u
+                   |        | movl  (%rdi,%rax,4), %eax # x <- M[up + x*4] = up->t2.a[x]
+                   |        | movl  %eax, (%rsi)        # *dest <- x
+*up->t2.p          | char   | movq  8(%rdi), %rax       # x <- M[8 + up] = up->t2.p
+                   |        | movb  (%rax), %al         # y <- M[up->t2.p] = *up->t2.p
+                   |        | movb  %al, (%rsi)         # *dest <- y = *up->t2.p

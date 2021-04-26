@@ -1,0 +1,21 @@
+Given:
+d = vt
+t = d/v
+t_old = d_old/v_old = 2500 km/(100 km/hr) = 25 hr
+
+A:
+a = 1500/2500 = 0.6
+k = (150 km/hr)/(100 km/hr) = 1.5
+S = 1/(1 - a + a/k) = 1/(1 - 0.6 + 0.6/1.5) = 1.25
+This scenario constitutes a 1.25x speed-up.
+
+B:
+k = v_new/v_old
+S*(1 - a + a/k) = 1
+S - a*S + a*S/k = 1
+1 - S + a*S = a*S/k
+k = v_new/v_old = a*S/(1 - S + a*S)
+v_new = v_old*a*S/(1 - S + a*S)
+v_new = (100 km/hr)0.6*1.67/(1 - 1.67 + 0.6*1.67)
+v_new = 301.8072289... km/hr ~= 302 km/hr
+You must travel at an average speed of 302 km/hr to achieve a 1.67x speed-up.

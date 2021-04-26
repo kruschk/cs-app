@@ -1,0 +1,23 @@
+A.
+True.
+
+B.
+False; the value may be rounded up, then down.
+
+C.
+False; there could be an overflow and/or loss of precision.
+
+D.
+True.
+
+E.
+True.
+
+F.
+True.
+
+G.
+True (from the property discussed on page 154).
+
+F.
+False; IEEE 754 floating-point operations are not associative.

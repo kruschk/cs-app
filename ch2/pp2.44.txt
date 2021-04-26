@@ -1,0 +1,32 @@
+A.
+False; consider TMin_w = 2^(w - 1):
+TMin_w > 0 = 0
+TMin_w - 1 < 0 = TMax_w < 0 = 0
+
+B.
+True.
+Huh? The book's argument doesn't make sense, although it would if the
+expression were changed to (x & 7) <= 4 || (x << 29 < 0)).
+
+C.
+False; consider positive overflow.
+
+D.
+True.
+
+E.
+False; consider TMin_w.
+TMin_w > 0 = 0
+-TMin_w >= 0 = TMin_w >= 0 = 0
+
+F.
+True; the bit-level representations of both the two's complement and unsigned
+values are the same, and the addition operation is commutative.
+
+G.
+True; consider the following:
+x*~y + uy*ux == -x (note: ~y == -y - 1)
+x*(-y - 1) + uy*ux == -x
+-x*y - x + uy*ux == -x (note: x*y == uy*ux)
+-x*y + x*y -x == -x
+-x == -x

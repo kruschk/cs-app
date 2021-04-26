@@ -1,0 +1,15 @@
+A.
+data_t: long
+TEST: >=
+
+B.
+data_t: short or unsigned short
+TEST: ==
+
+C.
+data_t: unsigned char
+TEST: >
+
+D.
+data_t: int
+TEST: <=

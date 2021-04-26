@@ -1,0 +1,8 @@
+The operations performed on x look like the form B transformation discussed on
+page 132: (x << (n + 1)) - (x << m), where n = 4 and m = 0. Therefore, M must
+have the bit representation [0000...0001 1111], which is 0x1F, or 31.
+
+Similarly, for y, a bias of 7 = 2^3 - 1 = (1 << 3) - 1 is added to y, and the
+result is arithmetic right-shifted by 3. Referring to the principle discussed
+on page 135, this matches the expression (x + (1 << k) - 1) >> k, with k = 3.
+Therefore, N = 2^k = 2^3 = 8.

@@ -1,0 +1,2 @@
+The compiler should choose whichever form requires the fewest number of clock
+cycles to complete.

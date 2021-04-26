@@ -1,0 +1,13 @@
+         x        |      -^t_4 x
+Hex | Decimal     | Decimal     | Hex
+----+-------------+-------------+----
+0x2 | [0010] =  2 | -2 = [1110] | 0xE
+0x3 | [0011] =  3 | -3 = [1101] | 0xD
+0x9 | [1001] = -7 |  7 = [0111] | 0x7
+0xB | [1011] = -5 |  5 = [0101] | 0x5
+0xC | [1100] = -4 |  4 = [0100] | 0x4
+
+Negating a given bit-pattern, no matter whether it represents an unsigned or
+two's complement value, results in the same bit pattern. This is a very
+convenient property, and it is somewhat unexpected, because the formulae for
+unsigned negation and two's complement negation are not the same.

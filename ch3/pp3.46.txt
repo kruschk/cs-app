@@ -1,0 +1,32 @@
+A.
+ _______________________
+|00 00 00 00 00 40 00 76| Return address
+|01 23 45 67 89 AB CD EF| Saved %rbx
+|                       |
+|           |?? ?? ?? ??| <- buf = %rsp
+|                       |
+ -----------------------
+
+B.
+ _______________________
+|00 00 00 00 00 40 00 34| Return address (corrupted with 0x34 0x00 bytes)
+|33 32 31 30 39 38 37 36| Saved %rbx (corrupted with 0x36 ... 0x33 bytes)
+|35 34 33 32 31 30 39 38|
+|37 36 35 34|33 32 31 30| <- buf = %rsp
+|                       |
+ -----------------------
+
+C.
+The program will attempt to return to address 0x00400030 instead of
+0x00400076, due to buffer overflow.
+
+D.
+The value stored in %rbx will have been corrupted by the buffer overflow.
+
+E.
+- Using `gets` instead of `fgets` makes the function vulnerable to a buffer
+  overflow.
+- The size argument to malloc is off by one; it should be `strlen(buf) + 1`.
+- There is no check for a non-NULL result returned by `malloc`.
+- Using `strcpy` could easily overrun the `malloc`ed buffer; `strncpy` would
+  be a better alternative.

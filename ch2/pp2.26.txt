@@ -1,0 +1,24 @@
+A.
+The program will produce an incorrect result whenever the length of string `t`
+is greater than that of string `s`, such that the expression on the left
+(should) yield a negative value.
+
+B.
+Consider the following strings:
+s = "test";
+t = "string";
+
+In the `strlonger` function, the following expression is evaluated:
+strlen(s) - strlen(t)
+strlen("test") - strlen("string")
+4U - 6U
+(-2)U // underflow!
+2^32 - 2
+4294967296 - 2
+4294967294
+In this example, the condition is really testing whether `4294967294 > 0`,
+which is true. This will always yield an incorrect result unless string `t`
+is much, much longer than string `s`.
+
+C.
+Simply change the expression to `strlen(s) > strlen(t)`.

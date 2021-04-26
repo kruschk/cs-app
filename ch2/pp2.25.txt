@@ -1,0 +1,16 @@
+The problem occurs in the `for` loop condition. Upon entering the loop, the
+expression `i <= length - 1` is evaluated, which yields:
+
+i <= length - 1
+0 <= 0U - 1
+0U <= 0U - 1
+0U <= [0000...0000] - [0000...0001] // Underflow occurs, yielding UINT_MAX
+0U <= [1111...1111] // UINT_MAX
+0U <= UINT_MAX
+
+As shown above, the loop condition is really testing whether
+`i <= UINT_MAX`. In fact, this condition can never be false, but the kernel
+will eventually raise a segmentation fault, because the program will attempt
+to access a memory location outside of the allowed range.
+
+The code can be fixed by changing the condition to `i < length`.

@@ -1,0 +1,16 @@
+A.
+         w | fun1(w)    | fun2(w)
+-----------+------------+--------
+0x00000076 | 0x00000076 | 0x00000076
+0x87654321 | 0x00000021 | 0x00000021
+0x000000C9 | 0x000000C9 | 0xFFFFFFC9
+0xEDCBA987 | 0x00000087 | 0xFFFFFF87
+
+B.
+fun1:
+Extract the least-significant byte of the word, interpreted as an unsigned
+value, thus returning a value in the range [0, 255].
+
+fun2:
+Extract the least-significant byte of the word, interpreted as a two's-
+complement value, thus returning a value in the range [-128, 127].

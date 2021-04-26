@@ -1,0 +1,32 @@
+A.
+
+R | G | B | Color
+--+---+---+-------------------
+1 | 1 | 1 | ~Black   = white
+1 | 1 | 0 | ~Blue    = yellow
+1 | 0 | 1 | ~Green   = magenta
+1 | 0 | 0 | ~Cyan    = red
+0 | 1 | 1 | ~Red     = cyan
+0 | 1 | 0 | ~Magenta = green
+0 | 0 | 1 | ~Yellow  = blue
+0 | 0 | 0 | ~White   = black
+
+B.
+
+Blue | green:
+  001
+| 010
+-----
+  011 = cyan
+
+Yellow & cyan:
+  110
+& 011
+-----
+  010 = green
+
+Red ^ magenta:
+  100
+^ 101
+-----
+  001 = blue

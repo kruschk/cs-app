@@ -1,0 +1,16 @@
+A.
+#defin OP /
+
+short arith(short x) {
+    return x OP 16;
+}
+
+B.
+# short arith(short x)
+# x in %rdi
+arith:
+    leaq 15(%rdi), %rbx # b = 15 + x
+    testq %rdi, %rdi    # x & x
+    cmovns %rdi, %rbx   # if >= 0, b = x
+    sarq $4, %rbx       # b = b/16
+    ret

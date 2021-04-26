@@ -1,0 +1,71 @@
+A.
+Compute the required number of bytes for the array, including some extra space
+(alignment? canary?):
+a <- 22 + n*8
+Round down to the nearest multiple of 16:
+a <- a & -16 = a & [FF FF FF FF FF FF FF F0]
+             = [aa aa aa aa aa aa aa a0]
+             = 16*floor(a/16)
+             = 16*floor((22 + n*8)/16)
+             = 16*floor(22/16 + n/2)
+             = 16*floor(11/8 + n/2)
+             = 16*floor(1 + 3/8 + n/2)
+             ?= 16*floor(1 + n/2)
+Set the stack pointer such that the appropriate space is allocated:
+sp <- sp - 16*floor(1 + n/2)
+
+B.
+Bias the stack pointer:
+a <- 7 + sp
+Divide it by 2^3, rounding up the original value (see 2.3.7):
+a <- a >> 3 = [aa aa aa aa aa aa aa aa] >> 3
+            = [00 0a aa aa aa aa aa aa]
+            = ceil(sp/2^3)
+            = ceil(sp/8)
+Recover the original stack pointer, rounded up to the nearest multiple of 8:
+a <- a*8 = 8*ceil(sp/8)
+           [aa aa aa aa aa aa a0 00]
+
+C.
+n |   s1 | s2   | p    | e1 | e2
+--+------+------+------+----+---
+5 | 2065 | 2017 | 2024 |  1 |  7
+6 | 2064 | 2000 | 2000 | 16 |  0
+s2:
+sp - 16*floor(1 + n/2) = 2065 - 16*floor(1 + 5/2)
+                       = 2065 - 16*floor(3 + 1/2)
+                       = 2065 - 16*3
+                       = 2065 - 48
+                       = 2065 - 48
+                       = 2017
+sp - 16*floor(1 + n/2) = 2064 - 16*floor(1 + 6/2)
+                       = 2064 - 16*floor(4)
+                       = 2064 - 64
+                       = 2000
+p:
+8*ceil(sp/8) = 8*ceil(2017/8)
+                   = 8*ceil(252 + 1/8)
+                   = 8*253
+                   = 2024
+8*ceil((7 + sp)/8) = 8*ceil(2000/8)
+                   = 8*ceil(250)
+                   = 8*250
+                   = 2000
+e1:
+s1 - (p + 8*n) = 2065 - (2024 + 8*5)
+               = 2065 - (2024 + 40)
+               = 2065 - 2064
+               = 1
+s1 - (p + 8*n) = 2064 - (2000 + 8*6)
+               = 2064 - (2000 + 48)
+               = 2064 - 2048
+               = 16
+e2:
+p - s2 = 2024 - 2017
+       = 7
+p - s2 = 2000 - 2000
+       = 0
+
+D.
+- p will be aligned on an 8-byte boundary.
+- s2 maintains the same offset from the nearest multiple of 16 as s1 does.
