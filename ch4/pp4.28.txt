@@ -1,0 +1,97 @@
+Without any partitioning and ignoring the delay of the register, the
+delay of the single-stage design is:
+
+t_1 = t_A + t_B + t_C + t_D + t_E + t_F
+    = 80 ps + 30 ps + 60 ps + 50 ps + 70 ps + 10 ps
+    = 300 ps
+
+A.
+The clock rate is limited by the delay of the slowest stage, so we want
+to equilibrate, as nearly as possible, the delays of the respective
+stages. The target delay time is therefore (300 ps)/2 = 150 ps per stage
+(ignoring the contributions of the registers). To achieve this, we place
+a register between combinational logic blocks C and D, yielding delays
+of:
+
+t_1 = t_A + t_B + t_C
+    = 80 ps + 30 ps + 60 ps
+    = 170 ps
+
+t_2 = t_D + t_E + t_F + t_register
+    = 50 ps + 70 ps + 10 ps
+    = 130 ps
+
+The cycle time is limited by the slowest stage, so we have:
+
+t_cycle = max(t_1, t_2) + t_register
+        = max(170 ps, 130 ps) + 20 ps
+        = 190 ps
+
+With this scheme, the latency and throughput are:
+
+t_latency = 2*t_cycle
+          = 2*(190 ps)
+          = 380 ps
+
+t_throughput = 1/t_cycle
+             = 1/190 ps
+             ~= 5.263 GIPS
+
+B.
+This time, we target a delay of (300 ps)/3 = 100 ps per stage, and
+proceed as before:
+
+t_1 = t_A + t_B
+    = 80 ps + 30 ps
+    = 110 ps
+
+t_2 = t_C + t_D
+    = 60 ps + 50 ps
+    = 110 ps
+
+t_3 = t_E + t_F
+    = 70 ps + 10 ps
+    = 80 ps
+
+t_cycle = max(t_1, t_2, t_3) + t_register
+        = max(110 ps, 110 ps, 80 ps) + 20 ps
+        = 110 ps + 20 ps
+        = 130 ps
+
+t_latency = 3*t_cycle
+          = 3*(130 ps)
+          = 390 ps
+
+t_throughput = 1/t_cycle
+             = 1/(130 ps)
+             = 7.692 GIPS
+
+C.
+This time, we target a delay of (300 ps)/4 = 75 ps per stage, and
+proceed as before:
+
+t_1 = t_A
+    = 80 ps
+t_2 = t_B + t_C
+    = 30 ps + 60 ps
+    = 90 ps
+t_3 = t_D
+    = 50 ps
+t_4 = t_E + t_F
+    = 70 ps + 10 ps
+    = 80 ps
+
+t_cycle = max(t_1, t_2, t_3, t_4) + t_register
+        = max(80 ps, 90 ps, 50 ps, 80 ps) + 20 ps
+        = 90 ps + 20 ps
+        = 110 ps
+
+t_latency = 4*t_cycle
+          = 4*(110 ps)
+          = 440 ps
+
+t_throughput = 1/t_cycle
+             = 1/(110 ps)
+             = 9.091 GIPS
+
+D.

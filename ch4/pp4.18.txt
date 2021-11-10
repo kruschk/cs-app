@@ -1,0 +1,22 @@
+Stage      | Generic              | Specific
+           | call Dest            | call 0x041
+-----------+----------------------+------------------------------
+Fetch      | icode:ifun <- M1[PC] | icode:ifun <- M1[0x037] = 8:0
+           | valC <- M8[PC + 1]   | valC <- M8[0x038] = 0x041
+           | valP <- PC + 9       | valP <- 0x037 + 9 = 0x040
+Decode     | valB <- R[%rsp]      | valB <- R[%rsp] = 128
+Execute    | valE <- valB + (-8)  | valE <- 128 + (-8) = 120 = 0x78
+Memory     | M8[valE] <- valP     | M8[0x78] <- 0x040
+Write back | R[%rsp] <- valE      | R[%rsp] <- 120
+PC update  | PC <- valC           | PC <- 0x041
+
+After executing this instruction, register %rsp, the memory, and the program
+counter are modified as follows:
+
+- R[%rsp] <- 120 = 0x78
+- M8[0x78] <- 0x040
+- PC <- 0x041
+
+Note that %rsp points to the memory location where the return address is
+stored, the memory contains the return address, and the program counter has
+been set to the call target.

@@ -1,0 +1,20 @@
+Stage      | Generic              | Specific
+           | popq rA              | popq %rax
+-----------+----------------------+------------------------------
+Fetch      | icode:ifun <- M1[PC] | icode:ifun <- M1[0x02c] = b:0
+           | rA:rB <- M1[PC + 1]  | rA:rB <- M1[0x02d] = 0:f
+           | valP <- PC + 2       | valP <- 0x02c + 2 = 0x02e
+Decode     | valA <- R[%rsp]      | valA <- R[%rsp] = 120 = 0x78
+           | valB <- R[%rsp]      | valB <- R[%rsp] = 120 = 0x78
+Execute    | valE <- valB + 8     | valE <- 0x78 + 8 = 0x80
+Memory     | valM <- M8[valA]     | valM <- M8[0x80] = 9
+Write back | R[%rsp] <- valE      | R[%rsp] <- 0x80
+           | R[rA] <- valM        | R[%rax] <- 9
+PC update  | PC <- valP           | PC <- 0x02e
+
+After executing this instruction, registers %rsp, %rax, and the program
+counter are modified as follows:
+
+- R[%rsp] <- 0x80 = 128
+- R[%rax] <- 9
+- PC <- 0x02e

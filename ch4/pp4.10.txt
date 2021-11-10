@@ -1,0 +1,33 @@
+not:
+x | ~x
+--+---
+0 |  1
+1 |  0
+
+or:
+| | 0 1
+--+----
+0 | 0 1
+1 | 1 1
+
+xor:
+^ | 0 1
+--+----
+0 | 0 1
+1 | 1 0
+
+==))xor>--,
+==))xor>-,|
+      .  |`-v
+      .  ===)or>-|not>-
+      .  |,-^
+==))xor>-`|
+==))xor>--`
+
+Rationale:
+The xor gates will tell us if each pair of signals was the same (i.e. equal:
+0) or different (i.e. not equal: 1). We can connect all of these results to
+an or gate, which will determine whether any one (or all) of the xor outputs
+was (were) different (i.e. not equal: 1). At this point, we have created a
+word-level not-equal circuit; we can simply invert its output to create a
+word-level equal circuit.

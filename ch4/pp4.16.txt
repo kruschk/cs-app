@@ -1,0 +1,6 @@
+The instruction `popq %rsp` executes the following assignments (in this
+order):
+%rsp <- %rsp + 8
+%rsp <- M8[%rsp]
+
+This aligns with the x86-64 conventions discussed previously.

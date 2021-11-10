@@ -1,0 +1,5 @@
+The instruction `pushq %rsp` executes these assignments, in this order:
+M8[%rsp - 8] <- %rsp
+%rsp <- %rsp - 8
+
+This aligns with the x86-64 conventions discussed previously.
