@@ -1,0 +1,21 @@
+We can compare versions 1 and 2 algebraically by considering the
+following condition:
+v1 < v2
+60 + 35n < 136 + 4n
+31n < 76
+n < 76 / 31 = 2.452... ~= 3
+
+Similarly, comparing versions 2 and 3, we have:
+v2 < v3
+136 + 4n < 157 + 1.25n
+2.75n < 21
+n < 21 / 2.75 = 7.636... ~= 8
+
+Comparing versions 1 and 3 yields:
+v1 < v3
+60 + 35n < 157 + 1.25n
+33.75n < 97
+n < 97 / 33.75 = 2.874... ~= 3
+
+For n < 3, version 1 is the fastest, for 3 <= n < 8, version 2 is the
+fastest, and for 8 <= n, version 3 is the fastest.

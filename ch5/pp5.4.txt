@@ -1,0 +1,30 @@
+A.
+
+In the -O1 case, %xmm0 is used only to store the value read from memory
+(*dest), compute the product (*dest * data[i]), and then write the
+product back to memory (*dest).
+
+In the -O2 case, however, %xmm0 also serves as an accumulator (along
+with *dest), and the value stored in it is written to memory at the end
+of each iteration. Since this write occurs just before a jump, the
+impact of the memory access is minimised.
+
+B.
+
+Consider combine3(v, get_vec_start(v) + 2) with IDENT = 1, OP = *, and
+v = [2, 3, 5]:
+
+Optimisation | Initial   | Before loop | i = 0     | i = 1     | i = 2      | Final
+-------------+-----------+-------------+-----------+-----------+------------+-----------
+-O1          | [2, 3, 5] | [2, 3, 1]   | [2, 3, 2] | [2, 3, 6] | [2, 3, 36] | [2, 3, 36]
+-O2          | [2, 3, 5] | [2, 3, 1]   | [2, 3, 2] | [2, 3, 6] | [2, 3, 36] | [2, 3, 36]
+
+As we can see, both optimisation levels faithfully implement the
+specified behaviour.
+
+C.
+
+The correct behaviour is preserved because the computed product is still
+written to memory on each iteration. The clever use of %xmm0 reduces the
+number of memory accesses required because it serves as storage for the
+product computation and as an accumulator across iterations.

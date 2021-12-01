@@ -1,0 +1,26 @@
+A.
+
+- Additions:
+  This procedure performs `n` additions to decrement the loop variable,
+  and another `n` to update the result. We therefore have `2*n` addition
+  operations in total.
+
+- Multiplications:
+  Using Horner's method, only one multiplication per loop is required,
+  yielding a total of n multiplication operations.
+
+B.
+
+The measured CPE of 8.00 results from a critical path containing a
+floating-point multiplication (L = 5) and addition (L = 3) operation
+within the loop.
+
+C.
+
+Despite requiring fewer multiplication operations, this (Horner's)
+method performs worse because it introduces a data dependency between
+the multiplication and addition instructions that did not exist before;
+i.e., the output of the multiplication instruction is an input to the
+addition instruction along the critical path. Essentially, the original
+method makes better use of instruction-level parallelism because the
+assignments to `result` and to `xpwr` may be computed independently.

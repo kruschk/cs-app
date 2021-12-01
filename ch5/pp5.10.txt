@@ -1,0 +1,31 @@
+A.
+
+`copy_array(a + 1, a, 999)` would set the elements of a as follows:
+a[i] = i + 1 for i E {0, 998}
+a[999] = 999
+
+B.
+
+`copy_array(a, a + 1, 999)` would set the elements of a to:
+a[i] = 0 for i E {0, 999}
+
+C.
+
+This performance can be explained by a write/read dependency:
+
+- In case A, the value being stored does not need to be read again,
+  because the address being written to is "behind" the memory location
+  that is read on the next iteration. On iteration i, the store
+  operation is writing to address &a[i], whereas the load operation is
+  reading from location &a[i+1].
+
+- In case B, the memory location that is written to on a given iteration
+  is read on the next iteration, creating a write/read dependency. On
+  iteration i, the store operation writes to address &a[i+1], but, on
+  the next iteration (i + 1), the same address (&a[i+1]) will be
+  accessed by the load operation.
+
+D.
+
+The performance should be the same as case A, because there will be no
+write/read dependencies between stores and subsequent loads.
