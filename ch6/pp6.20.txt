@@ -1,0 +1,25 @@
+A.
+
+As in the previous problems, there will be 2048 reads in total.
+
+B.
+
+This loop accesses memory in a convenient stride-1 reference pattern.
+The first reference will miss, triggering a 32 B block to be loaded into
+the cache. Seven reads thereafter will hit because they access the
+following 7 words that were just loaded into the cache block. The hit
+rate is therefore 7 hits to 8 reads, or 0.875. We conclude that out of a
+total of 2048 reads, 1792 will hit.
+
+C.
+
+As discussed in part B, the hit rate is 0.875.
+
+D.
+
+Doubling the size of the cache would make no difference, because the
+grid is only iterated over one time, and all of the cache misses are
+cold misses. Even if it were iterated more than once, a quadrupling of
+the cache size would be required to see any benefit, because then the
+entire array could be cached. The hit rate would therefore remain the
+same at 0.875.

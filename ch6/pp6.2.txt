@@ -1,0 +1,8 @@
+1 cylinder = 1 track/surface
+
+capacity = 1,024 B/sector
+           * 500 sector/track
+           * 15,000 track/surface
+           * 2 surface/platter
+           * 3 platter/disk
+         = 46.08 GB

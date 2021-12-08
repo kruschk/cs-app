@@ -1,0 +1,23 @@
+Note: the numbers in the solution have changed, but this approach
+appears to be correct.
+
+A.
+
+t = 128*10^15 B / 470 MB/s
+  = 128*10^15 B / 470*10^6 B/s
+  = ((128/470)*10^9 s) * (1 h/3600 s) * (1 d/24 h) * (1 a/365 d)
+  ~= 8.64 a
+
+B.
+
+t = 128*10^15 B / 303 MB/s
+  = 128*10^15 B / 303*10^6 B/s
+  = ((128/303)*10^9 s) * (1 h/3600 s) * (1 d/24 h) * (1 a/365 d)
+  ~= 13.4 a
+
+C.
+
+t = 128*10^15 B / 20 GB/d
+  = 128*10^15 B / 20*10^9 B/d
+  = ((128/20)*10^6 d) * (1 a/365 d)
+  ~= 17534 a

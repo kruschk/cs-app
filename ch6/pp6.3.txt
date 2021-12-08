@@ -1,0 +1,14 @@
+T_avg-rotation = T_max-rotation/2
+               = 1/(2w)
+               = 1 / (2 * 12000 r/min) * 60 s/min
+               = 0.0025 s
+               = 2.5 ms
+
+T_avg-transfer = t/s * 1/w
+               = (1 track / 300 sector) * (60 s/min) / (12000 r/min)
+               = 0.00001666... s
+               ~= 0.016 ms
+
+T_avg-access = T_avg-seek + T_avg-rotation + T_avg-transfer
+             = 5 ms + 2.5 ms + 0.016 ms
+             = 7.516 ms

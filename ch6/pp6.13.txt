@@ -1,0 +1,15 @@
+A.
+
+[---------------------CT|------CI|---CO]
+[ 0  1  1  0  1  0  1  0  1  0  0  1  1]
+[t7 t6 t5 t4 t3 t2 t1 t0 s2 s1 s0 b1 b0]
+[12 11 10  9  8  7  6  5  4  3  2  1  0]
+
+B.
+
+Parameter               | Value
+Cache block offset (CO) | 0x3
+Cache set index (CI)    | 0x4
+Cache tag (CT)          | 0x6A
+Cache hit?              | N
+Cache byte returned     | -

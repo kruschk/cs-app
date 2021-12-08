@@ -1,0 +1,18 @@
+From the problem statement, we have:
+
+s = log2(S)
+  = log2(8)
+  = 3
+
+b = log2(B)
+  = log2(4)
+  = 2
+
+t = m - (s + b)
+  = 13 - (3 + 2)
+  = 13 - 5
+  = 8
+
+[---------------------CT|------CI|---CO]
+[t7 t6 t5 t4 t3 t2 t1 t0 s2 s1 s0 b1 b0]
+[12 11 10  9  8  7  6  5  4  3  2  1  0]

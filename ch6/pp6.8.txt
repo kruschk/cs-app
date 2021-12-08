@@ -1,0 +1,21 @@
+The data will be arranged in memory as follows, in order of increasing
+memory address (except it will be linear rather than two-dimensional):
+
+p[0].vel[0], p[0].vel[1], p[0].vel[2], p[0].acc[0], p[0].acc[1], p[0].acc[2],
+p[1].vel[0], p[1].vel[1], p[1].vel[2], p[1].acc[0], p[1].acc[1], p[1].acc[2],
+p[2].vel[0], p[2].vel[1], p[2].vel[2], p[2].acc[0], p[2].acc[1], p[2].acc[2]
+
+To maximise spatial locality, we need to access the data in the same
+order that it appears in memory. From this perspective, it is clear that
+clear1 is the best approach, because it accesses elements in the order
+they're arranged, using a stride-1 reference pattern. The next best
+method is clear2, because it accesses strides forward by 3 elements,
+then back by 2 elements, then forward by 3, and so on (I guess this
+counts as a stride-3 reference pattern?). The worst procedure, in terms
+of spatial locality, is clear3, because it accesses the above memory
+layout column-wise, yielding a stride-6 (I think?) reference pattern. In
+summary, the ranking is:
+
+1. clear1
+2. clear2
+3. clear3

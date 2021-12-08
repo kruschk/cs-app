@@ -1,0 +1,97 @@
+A.
+
+From the problem statement, we are given src = 0x0, dst = 0x10, C = 16,
+E = 1, and B = 8. We can derive the following:
+
+S = C / (E * B)
+  = 16 / (1 * 8)
+  = 2
+
+b = log2(8)
+  = 3
+
+s = log2(2)
+  = 1
+
+The number of address bits (m) is not given, so we can't derive t, but
+we assume t = 1, which is sufficient for this problem. The data will be
+laid out in memory as follows:
+
+0x00 = 0b 0000 0000: src[0][0]
+0x04 = 0b 0000 0100: src[0][1]
+0x08 = 0b 0000 1000: src[1][0]
+0x0C = 0b 0000 1100: src[1][1]
+0x10 = 0b 0001 0000: dst[0][0]
+0x14 = 0b 0001 0100: dst[0][1]
+0x18 = 0b 0001 1000: dst[1][0]
+0x1C = 0b 0001 1100: dst[1][1]
+
+The cache activity will proceed as follows:
+
+1. Iteration i = 0, j = 0:
+   src[0][0], set = 0b0, tag = 0b0: miss, so C[0][0] <- [src[0][0], src[0][1]]
+   dst[0][0], set = 0b0, tag = 0b1: miss, so C[0][0] <- [dst[0][0], dst[0][1]]
+
+2. Iteration i = 0, j = 1:
+   src[0][1], set = 0b0, tag = 0b0: miss, so C[0][0] <- [src[0][0], src[0][1]]
+   dst[0][1], set = 0b0, tag = 0b1: miss, so C[0][0] <- [dst[0][0], dst[0][1]]
+
+3. Iteration i = 1, j = 0:
+   src[1][0], set = 0b1, tag = 0b0: miss, so C[1][0] <- [src[1][0], src[1][1]]
+   dst[1][0], set = 0b1, tag = 0b1: miss, so C[1][0] <- [dst[1][0], dst[1][1]]
+
+4. Iteration i = 1, j = 1:
+   src[1][1], set = 0b1, tag = 0b0: miss, so C[1][0] <- [src[1][0], src[1][1]]
+   dst[1][1], set = 0b1, tag = 0b1: miss, so C[1][0] <- [dst[1][0], dst[1][1]]
+
+The cache is thrashing due to conflict misses. The table is completed
+below:
+
+dst array       | src array
+Row\Col | 0 | 1 | Row\Col | 0 | 1
+--------+---+---+---------+---+--
+  0     | m | m |   0     | m | m
+  1     | m | m |   1     | m | m
+
+Note: the solution says the reference to src[1][1] yields a cache hit,
+but this doesn't seem to make sense; I believe it is an error.
+
+B.
+
+Now, C = 32, while all other parameters are the same. We derive:
+
+
+S = C / (E * B)
+  = 32 / (1 * 8)
+  = 4
+
+s = log2(4)
+  = 2
+
+There is no change to the memory layout. The cache activity proceeds as
+follows:
+
+1. Iteration i = 0, j = 0:
+   src[0][0], set = 0b00, tag = 0b0: miss, so C[0][0] <- [src[0][0], src[0][1]]
+   dst[0][0], set = 0b10, tag = 0b0: miss, so C[2][0] <- [dst[0][0], dst[0][1]]
+
+2. Iteration i = 0, j = 1:
+   src[0][1], set = 0b00, tag = 0b0: hit
+   dst[0][1], set = 0b10, tag = 0b0: hit
+
+3. Iteration i = 1, j = 0: 
+   src[1][0], set = 0b01, tag = 0b0: miss, so C[1][0] <- [src[1][0], src[1][1]]
+   dst[1][0], set = 0b11, tag = 0b0: miss, so C[3][0] <- [dst[1][0], dst[1][1]]
+
+4. Iteration i = 1, j = 1:
+   src[1][1], set = 0b01, tag = 0b0: hit
+   dst[1][1], set = 0b11, tag = 0b0: hit
+
+We can see that thrashing no longer occurs. The new table is given
+below:
+
+dst array       | src array
+Row\Col | 0 | 1 | Row\Col | 0 | 1
+--------+---+---+---------+---+--
+  0     | m | h |   0     | m | h
+  1     | m | h |   1     | m | h

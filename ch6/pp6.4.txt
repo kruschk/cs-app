@@ -1,0 +1,42 @@
+Note: the book's solution seems to have changed the numbers (???), but
+this approach seems to be more-or-less correct nonetheless (despite
+differing results).
+
+In each case, the disk will need to read the following number of
+sectors to read the entire file:
+
+s = 1 MB / 512 B/sector = 2^20 B / 512 B/sector = 2048 sector
+
+T_avg-rotation = T_max-rotation/2
+               = 1/(2w)
+               = 1 / (2 * 13000 r/min) * 60 s/min
+               ~= 0.00230769231 s
+               ~= 2.31 ms
+
+T_avg-transfer = t/s * 1/w
+               = (1 track / 5000 sector) * (60 s/min) / (13000 r/min)
+               ~= 0.0000009231
+               ~= 0.000923 ms
+               = 0.923 ns
+
+A.
+
+In the best case, the entire file will be written to consecutive sectors
+on a single track, eliminating all but the first seek and rotation
+penalties. We estimate the access time as:
+
+T_best-access = T_avg-seek + T_avg-rotation + s*T_avg-transfer
+              ~= 6 ms + 2.31 ms + 2048 sector * 0.000923 ms/sector
+              = 10.200304 ms
+              ~= 10.2 ms
+
+B.
+
+In the random case, each sector of the file will likely be distributed
+randomly throughout the disk. The seek and rotation penalties will,
+therefore, most likely apply to every sector access.
+
+T_random-access = s*(T_avg-seek + T_avg-rotation + T_avg-transfer)
+                ~= 2048 sector * (6 ms + 2.31 ms + 0.000923 ms/sector)
+                ~= 17020.77 ms
+                ~= 17.0 s

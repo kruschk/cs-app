@@ -1,0 +1,24 @@
+We are interested in set 3, so we require s_i = [011]. Further, the only
+tag that will result in a cache hit is t_i = 0x32 = [0011 0010] (t_i =
+0x06 = [0110] is not valid because the valid bit is not set). All
+addresses that will result in cache hits will therefore be of the form:
+
+[---------------------CT|------CI|---CO]
+[ 0  0  0  0  0  1  1  0  0  1  1 b1 b0]
+[t7 t6 t5 t4 t3 t2 t1 t0 s2 s1 s0 b1 b0]
+[12 11 10  9  8  7  6  5  4  3  2  1  0]
+
+More compactly, our addresses will be of the form [0000 0110 0100 11bb].
+Written in hexadecimal, they are: 0x064C, 0x064D, 0x064E, and 0x064F.
+
+Note: I originally included the t_i = 0x06 case as well (i.e., I did
+both), because I didn't notice the valid bit was 0. This case is
+illustrated below:
+
+[---------------------CT|------CI|---CO]
+[ 0  0  1  1  0  0  1  0  0  1  1 b1 b0]
+[t7 t6 t5 t4 t3 t2 t1 t0 s2 s1 s0 b1 b0]
+[12 11 10  9  8  7  6  5  4  3  2  1  0]
+
+More compactly, our addresses will be of the form [0000 0000 1100 11bb].
+Written in hexadecimal, they are: 0x00CC, 0x00CD, 0x00CE, and 0x00CF.

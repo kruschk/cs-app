@@ -1,0 +1,15 @@
+While it isn't perfectly clear because there is no stride for a single
+data access, from the memory mountain we estimate the throughput to be
+roughly 12 GB/s. The clock rate is 2.1 GHz. For a 16 B word, this
+yields:
+
+c = (16 B) * (2.1*10^9 cycle/s) / (12*10^9 B/s)
+  = (16 B) * (2.1 cycle/s) / (12 B/s)
+  = 16 * 2.1 / 12 cycle
+  = 4 * 21 / (10 * 3) cycle
+  = 4 * 7 / 10 cycle
+  = 28 / 10 cycle
+  = 2.8 cycle
+
+Based on this estimate, only 2.8 CPU cycles are required to fetch a 16 B
+word from the L1 cache on this machine.

@@ -1,0 +1,17 @@
+Cache hits and misses will occur in the following pattern:
+
+i | x[i] | y[i]
+--+------+-----
+0 | Miss | Miss
+1 | Hit  | Hit
+2 | Hit  | Hit
+3 | Hit  | Hit
+4 | Miss | Miss
+5 | Hit  | Hit
+6 | Hit  | Hit
+7 | Hit  | Hit
+
+As can be seen, 1/4 references will be cache misses, so 1 - 1/4 = 3/4
+will be cache hits. The conflict misses have been eliminated, and the
+ones that remain are capacity limits, because the cache block is simply
+not large enough to store the working set.

@@ -1,0 +1,45 @@
+Note: the solution to this problem is complete nonsense.
+
+A.
+
+The code performs 1024 iterations, each of which performs 2 reads,
+for a total of 2048.
+
+B.
+
+1. Iteration i = 31, j = 31:
+   0x1FF8 = 0b0001 1111 1111 1000: grid[31][31].x
+   tag = 0b0 0011 = 3, set = 0b11 1111 = 63, block = 0b1 1000 = 24
+   Miss, C[63][0] <- [grid[31][28], grid[31][29], grid[31][30], grid[31][31]]
+   0x1FFC = 0b0001 1111 1111 1100: grid[31][31].y
+   tag = 0b0 0011 = 3, set = 0b11 1111 = 63, block = 0b1 1100 = 28
+   Hit!
+
+2. Iteration i = 31, j = 30:
+   0x1E08 = 0b0001 1110 0000 1000: grid[30][31].x
+   tag = 0b0 0011 = 3, set = 0b11 0000 = 48, block = 0b0 1000 = 8
+   Miss, C[48][0] <- [grid[30][28], grid[30][29], grid[30][30], grid[30][31]]
+   0x1E0C = 0b0001 1110 0000 1100: grid[30][31].y
+   tag = 0b0 0011 = 3, set = 0b11 0000 = 48, block = 0b0 1100 = 12
+   Hit!
+
+On each iteration, the first read will miss, and the second will hit,
+yielding a total of 1024 hits.
+
+C.
+
+The miss rate will be 1024/2048 = 1/2 = 0.5, so the hit rate will be 1 -
+0.5 = 0.5.
+
+D.
+
+Doubling the cache size to 4096 B will make no difference, because the
+cache will still be only half the size of the grid array. The cache can
+only store half of the array, and whenever the memory references cross
+the boundary between the first 4096 B and the second 4096 B, set
+collisions will occur, and references to one segment will evict blocks
+from the other segment. Unfortunately, since the array will still be
+scanned column-wise, equivalent to a stride-256 (byte) reference
+pattern, this crossing of boundaries will occur frequently. As a result,
+hits and misses will continue to occur in pairs, and there will be no
+benefit from loading the blocks on previous scans through the columns. 

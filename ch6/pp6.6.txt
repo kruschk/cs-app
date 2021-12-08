@@ -1,0 +1,35 @@
+Consider the given data, tabulated below:
+
+x    |    y
+-----+-----
+2005 |    5
+2010 |  0.3
+2015 | 0.03
+
+The cost per GB of a hard drive appears to decrease by a rough factor of
+ten every five years, indicative of a logarithmic relationship between x
+and y. Based on this observation, we assume the relationship is of the
+form log(y) = m*x + b, and generate the following table:
+
+x    |    y | log(y)
+-----+------+-------
+2005 | 5    |  1.609
+2010 | 0.3  | -1.204
+2015 | 0.03 | -3.507
+
+Calculating a least-squares fit using these data yields m = -0.5116 and
+b = 1027. We want to find x such that:
+
+y = 200 $ / 1 PB
+  = 200 $ / 10^15 B
+  = 200 $ / (10^15 B * 1 GB/10^9 B)
+  = 200 $ / (10^6 GB)
+  = 2*10^-5
+
+Solving our equation for x and plugging numbers in yields:
+
+x = (log(y) - b)/m
+  = (log(2*10^-5) - 1027)/-0.5116
+  = 2028
+
+If the given trend continues, we'll see 200 $/PB some time around 2028.
