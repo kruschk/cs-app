@@ -1,0 +1,37 @@
+A.
+
+/* Module 1 */
+int main() {} // Strong
+
+/* Module 2 */
+int main;     // Weak
+int p2() {}
+
+a) REF(main.1) -> DEF(main.1)
+b) REF(main.2) -> DEF(main.1)
+
+B.
+
+/* Module 1 */
+void main() {} // Strong
+
+/* Module 2 */
+int main = 1;  // Strong
+int p2() {}
+
+a) REF(main.1) -> ERROR
+b) REF(main.2) -> ERROR
+
+C.
+
+/* Module 1 */
+int x;          // Weak
+void main() {}
+
+/* Module 2 */
+double x = 1.0; // Strong
+int p2() {}
+
+a) REF(x.1) -> DEF(x.2)
+b) REF(x.2) -> DEF(x.2)
+

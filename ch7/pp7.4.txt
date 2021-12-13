@@ -1,0 +1,9 @@
+A.
+
+The address of the relocated reference (i.e., the memory location of the
+argument) is 0x004004df, one byte after the callq instruction address.
+
+B.
+
+The value of the relocated reference (i.e., the argument to the callq
+instruction) is 0x00000005.

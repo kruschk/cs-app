@@ -1,0 +1,14 @@
+Symbol | .symtab entry? | Symbol type | Module where defined | Section
+-------+----------------+-------------+----------------------+----------------------------
+buf    | Yes            | extern      | m.o                  | UNDEF (swap.o), .data (m.o)
+bufp0  | Yes            | global      | swap.o               | .data (book), .data.rel (readelf)
+bufp1  | Yes            | global      | swap.o               | COMMON (book), .bss (readelf)
+swap   | Yes            | global      | swap.o               | .text
+temp   | No             | -           | -                    | -
+
+Note: my solution agrees with the book's, but not with the object files
+that GCC generated on this machine. Using readelf on swap.o, it says
+bufp1 is in .bss and bufp0 is in .data.rel (the latter of which isn't
+even mentioned in the book). Further, swap is in UNDEF, although this
+makes sense if the book wanted to know what section it was in relative
+to m.o rather than swap.o.

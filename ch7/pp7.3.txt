@@ -1,0 +1,16 @@
+A.
+
+gcc p.o libx.a
+
+B.
+
+gcc p.o libx.a liby.a
+
+C.
+
+gcc p.o libx.a liby.a libx.a
+
+Note: For this part, I thought there would have to be a p.o at the end
+of the command line, but it's not necessary because the linker
+differentiates between archive and object files, and treats them
+differently.

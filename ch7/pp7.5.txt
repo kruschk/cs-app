@@ -1,0 +1,23 @@
+Using the notation from the textbook, we have:
+
+ADDR(s) = ADDR(.text)
+        = 0x4004d0
+
+ADDR(r.symbol) = ADDR(swap)
+               = 0x4004e8
+
+Since the type of the relocation reference is R_X86_64_PC32, we have:
+
+refaddr = ADDR(s) + r.offset
+        = ADDR(.text) + r.offset
+        = 0x4004d0 + 0xa
+        = 0x4004da
+
+*refptr = ADDR(r.symbol) + r.addend - refaddr
+        = ADDR(swap) + r.addend - refaddr
+        = 0x4004e8 + (-0x4) - 0x4004da
+        = 0x4004e4 - 0x4004da
+        = 0xa
+
+The argument to the callq instruction (i.e., the relocated reference to
+swap) will be 0xa.
