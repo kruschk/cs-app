@@ -1,0 +1,19 @@
+Consider the following table of the periods during which the processes
+run:
+
+Time\Process | A | B | C
+-------------+---+---+--
+   1         | x |   |
+   2         | x | x |
+   3         | x | x |
+   4         |   | x | x
+   5         |   | x | x
+   6         |   |   | x
+
+From this table, it is clear which processes operate concurrently.
+
+Process pair | Concurrent?
+-------------+------------
+AB           | Yes
+AC           | No
+BC           | Yes

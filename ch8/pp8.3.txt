@@ -1,0 +1,26 @@
+Consider the following process graph:
+
+          ,----->o---------->o---------->o-------->o---.
+          | printf("9") printf("3") printf("6") exit() |
+          |                                            v
+  o------>o------->o---------------------------------->o-------------->o---------->o-------->o
+main() fork() printf("0")                    waitpid(-1, NULL, 0) printf("3") printf("6") exit()
+
+The parent process calls `waitpid`, which will block until the child
+process exits. As a result, the output sequence will always end with 36,
+the values printed by the parent process after `waitpid` returns. The
+sequence of values printed by the child process will always be in the
+same order (936), but since the parent process is running concurrently,
+its printed value (0) can be interleaved anywhere within this
+subsequence. The possible output sequences are therefore:
+
+- 093636
+
+- 903636
+
+- 930636
+
+- 936036
+
+Note that each of these sequences represent topological sorts of the
+above process graph.

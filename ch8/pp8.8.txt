@@ -1,0 +1,10 @@
+This program will print "213". First, the parent process prints the
+value of `counter`, which has been initialised to 2. It then creates a
+child process, which does nothing but iterate a busy loop. The parent
+process sends a `SIGUSR1` signal to the child process, then blocks while
+waiting for it to terminate. The child, receiving the signal, decrements
+`counter`, prints its new value of 1, and terminates. Note, however,
+that the child's `counter` is distinct from the parent's, which is not
+modified by the decrement operation. The parent signal, having reaped
+the child process, proceeds to increment `counter` and print its new
+value of 2.

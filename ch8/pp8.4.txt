@@ -1,0 +1,26 @@
+A.
+
+Consider the following process graph:
+
+                            ,--------->o----------------->o---------------->o---------->o---.
+                            | printf("%d\n",!pid) printf("Child\n") printf("Stop\n") exit() |
+                            |                                                               v
+  o----------->o----------->o----------->o------------------------------------------------->o--------------------------->o------------------------>o--------->o
+main() printf("Start\n") fork() printf("%d\n",!pid)                               waitpid(-1,&status,0) printf("%d\n",WEXITSTATUS(status)) printf("Stop\n") exit
+
+The program will print seven output lines, corresponding to the seven
+`printf` vertices in the process graph.
+
+B.
+
+One possible ordering is:
+
+> Start
+> 1
+> Child
+> Stop
+> 0
+> 2
+> Stop
+
+Any topological sort of the process graph is possible.

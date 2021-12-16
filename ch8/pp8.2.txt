@@ -1,0 +1,16 @@
+A.
+
+The child process prints:
+
+> p1: a=9
+> p2: a=8
+
+B.
+
+The parent process prints:
+
+> p2: a=9
+
+Note: the book's solution is incorrect. Since postfix operators are
+used, `a` is incremented/decremented after the value is passed to
+printf. Running the program reinforces my answer.
