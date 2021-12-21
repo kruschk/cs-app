@@ -1,0 +1,11 @@
+Let `align(n, b)` be a function that rounds `n` up to the nearest
+positive multiple of `b`, where n >= 0 and b > 0. An allocated block
+must have, at minimum, a 1 B payload. Any header and footer, allocated
+or free, is 4 B. The given table may be completed as follows:
+
+Alignment   | Allocated block       | Free block        | Minimum block size (bytes)
+------------+-----------------------+-------------------+---------------------------------------------------
+Single word | Header and footer     | Header and footer | align(max(4 + 1 + 4, 4 + 4), 4) = align(9, 4) = 12
+Single word | Header, but no footer | Header and footer | align(max(4 + 1,     4 + 4), 4) = align(8, 4) =  8
+Double word | Header and footer     | Header and footer | align(max(4 + 1 + 4, 4 + 4), 8) = align(9, 8) = 16
+Double word | Header, but no footer | Header and footer | align(max(4 + 1,     4 + 4), 8) = align(8, 8) =  8

@@ -1,0 +1,19 @@
+The number of distinct addresses is equal to the page size times the
+number of page table entries (PTEs). Expressed algebraically, we have:
+
+N = P * PTE
+
+Solving for PTE yields:
+
+PTE = N / P
+    = 2^n / 2^p
+    = 2^(n - p)
+
+The rest is just computation.
+
+ n | P = 2^p | Number of PTEs
+---+---------+-----------------------
+12 |     1 K | 2^(12 - 10) = 2^2 =  4
+16 |    16 K | 2^(16 - 14) = 2^2 =  4
+24 |     2 M | 2^(24 - 21) = 2^3 =  8
+36 |     1 G | 2^(36 - 30) = 2^6 = 64

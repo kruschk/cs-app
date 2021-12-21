@@ -1,0 +1,18 @@
+We are given n = 64 and m = 32. The number of bits used for the page
+offset (physical or virtual) is equal to the number of bits in a page (P
+= 2^p). The remaining bits are used for the page number. Algebraically,
+this can be expressed as:
+
+- page_offset_bits(p) = p
+
+- physical_page_number_bits(m, p) = m - p
+
+- virtual_page_number_bits(n, p) = n - p
+
+               | Number of...
+P              | VPN bits | VPO bits | PPN bits | PPO bits
+---------------+----------+----------+----------+---------
+ 1 KB = 2^10 B |       54 |       10 |       22 |       10
+ 2 KB = 2^11 B |       53 |       11 |       21 |       11
+ 4 KB = 2^12 B |       52 |       12 |       20 |       12
+16 KB = 2^14 B |       50 |       14 |       18 |       14

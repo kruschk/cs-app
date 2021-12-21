@@ -1,0 +1,40 @@
+A.
+
+A_v = 0x03d7 = 0b0000 0011 1101 0111
+
+                  |TLBI |
+| TLBT = 0x03     | 0x3 |
+[13 12 11 10  9  8| 7  6| 5  4  3  2  1  0]
+[ 0  0  0  0  1  1| 1  1| 0  1  0  1  1  1]
+| VPN = 0x0f            | VPO = 0x17      |
+
+B.
+
+Parameter         | Value
+------------------+------
+VPN               | 0x0f
+TLB index         | 0x3
+TLB tag           | 0x03
+TLB hit? (Y/N)    | Yes
+Page fault? (Y/N) | No (irrelevant b/c PTE is cached?)
+PPN               | 0x0d
+
+C.
+
+A_p = 0b001101 010111 = 0b0011 0101 0111
+
+                              | CO  |
+| CT = 0x0d       | CI = 0x5  | 0x3 |
+[11 10  9  8  7  6| 5  4  3  2| 1  0]
+[ 0  0  1  1  0  1| 0  1  0  1| 1  1]
+| PPN = 0x0d      | PPO = 0x17      |
+
+D.
+
+Parameter           | Value
+--------------------+------
+Byte offset         | 0x3
+Cache index         | 0x5
+Cache tag           | 0x0d
+Cache hit? (Y/N)    | Yes
+Cache byte returned | 0x1d
