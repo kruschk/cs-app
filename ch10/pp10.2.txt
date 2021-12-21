@@ -1,0 +1,8 @@
+Each `open` call creates a new file table entry, each pointing to the
+same v-node table entry, and returns two distinct file descriptors. The
+first call to `read` reads the character 'f' into `c` and increments the
+position in the first file table entry. The second call does the same,
+but since the second file descriptor refers to a separate file table
+entry, it also reads the first character of the file into `c`, because
+the file position was still pointing to the start of the file. The
+program therefore prints "c = f".

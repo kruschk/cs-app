@@ -1,0 +1,10 @@
+After the calls to `open`, the two file descriptors will point to two
+separate file table entries that refer to the same file. The first
+`read` call increments the position in the second file table entry
+(pointed to by `fd2`). The call to `dup2` redirects `fd1` to `fd2`; in
+other words, `fd1` is modified such that it points to `fd2`'s file table
+entry, and its original file table entry is marked for removal by the
+kernel (because the refcnt drops to 0). The second `read` then reads the
+file referred to by `fd1`, but since this file descriptor refers to the
+second file table entry, the file position is now set to the second byte
+in the file ('o'). This program will therefore print "c = o".

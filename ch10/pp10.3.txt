@@ -1,0 +1,8 @@
+The critical point to note in this problem is that the child process
+inherits the parent's context, so its file descriptors refer to the same
+file table entries that the parent does. The child process reads a
+character from the file first, incrementing the position offset in the
+opened file. After waiting for the child process to terminate, the
+parent reads a character from the file, but this read begins at the
+incremented offset (due to the shared file table entry). This program
+therefore prints "c = o".

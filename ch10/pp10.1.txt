@@ -1,0 +1,8 @@
+We assume that foo.txt and baz.txt exist. The first call to `open` will
+open foo.txt and return file descriptor 3, since the call is guaranteed
+to return the smallest available file descriptor (ignoring error
+conditions) and file descriptors 0, 1, and 2 (stdin, stdout, and stderr,
+respectively) are already in use. After closing this file, file
+descriptor 3 becomes available again; therefore, the second call to
+`open` will also return file descriptor 3. As a result, the `printf`
+call will print "fd2 = 3".

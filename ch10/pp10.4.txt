@@ -1,0 +1,2 @@
+Calling `dup2(5, STDIN_FILENO)` will redirect standard input to file
+descriptor 5.
