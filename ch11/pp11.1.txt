@@ -1,0 +1,10 @@
+Note: the hex addresses are given in network (big-endian) byte order.
+
+Dotted-decimal address | Hex address
+-----------------------+------------
+107.212.122.205        | 0x6BD47ACD
+64.12.149.13           | 0x400C950D
+107.212.96.29          | 0x6BD4601D
+0.0.0.128              | 0x00000080
+255.255.255.0          | 0xFFFFFF00
+10.1.1.64              | 0x0A010140

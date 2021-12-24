@@ -1,0 +1,6 @@
+Assume the server has a file descriptor for the connection, `connfd`.
+After spawning the child process, the child process will copy file
+descriptor table entry `connfd` to standard output with a call to
+`dup2(connfd, STDOUT_FILENO)`. The child process will then run the
+requested program, and any output written by it to standard output will
+be redirected to the connection file descriptor `connfd`.
