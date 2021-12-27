@@ -1,0 +1,10 @@
+Nothing will happen until the server finishes `echo`ing, closes
+`connfd`, and repeats the loop. There will be some delay while this
+process completes. Once this is done, the program will recognise through
+the `select` call that STDIN_FILENO is ready for reading. It will call
+`command`, which is programmed to `exit` on EOF. At this point, the
+entire program terminates.
+
+Note: the book's solution claims the program will recognise the EOF
+state during the call to `echo`, but this doesn't make sense because
+they're reading two different file descriptors.

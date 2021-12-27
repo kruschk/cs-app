@@ -1,0 +1,14 @@
+A.
+
+The mutex is necessary because the producer and consumer can feasibly
+access the same element of the buffer concurrently.
+
+B.
+
+The mutex is unnecessary; since there is only one element, a nonempty buffer is
+equivalent to a full buffer, so accesses to the buffer are synchronised
+by the `slots` and `items` member semaphores.
+
+C.
+
+The mutex is unnecessary by the same argument as B.

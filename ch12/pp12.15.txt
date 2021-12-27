@@ -1,0 +1,57 @@
+A.
+
+...  |
+     |-----------------------------------+
+V(t) | Forbidden region (t)              |
+     |                                   |
+...  |                                   |
+     |--------------------------+        |
+P(t) |                          |        |
+     |                          |        |
+...  |                          |        |
+     |        +--------+        |        |
+V(s) |        | Forbi- |        |        |
+     |        | dden   |        |        |
+...  |        | (s)    |        |        |
+     |        +--------+        |        |
+P(s) |                          |        |
+     |                          |        |
+...  |                          |        |
+     +---------------------------------------
+      ... P(s) ... V(s) ... P(t) ... V(t) ...
+
+Initially, s = 1, t = 0.
+
+B.
+
+Yes, the process always deadlocks because the progress graph begins in
+the deadlock zone.
+
+C.
+
+Simply initialising semaphore `t` to 1 will eliminate the possibility of
+deadlock.
+
+D.
+
+...  |
+     |                          +-------+
+V(t) |                          | Forb- |
+     |                          | idden |
+...  |                          | (t)   |
+     |                          +-------+
+P(t) |                          
+     |                          
+...  |                          
+     |        +--------+        
+V(s) |        | Forbi- |        
+     |        | dden   |        
+...  |        | (s)    |        
+     |        +--------+        
+P(s) |                          
+     |                          
+...  |                          
+     +---------------------------------------
+      ... P(s) ... V(s) ... P(t) ... V(t) ...
+
+Initially, s = 1, t = 1.

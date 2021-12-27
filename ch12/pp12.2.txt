@@ -1,0 +1,3 @@
+This seems very wrong. It even says in the code snippet that this line
+is important. I think this change would cause a memory leak, despite the
+book's claims. 

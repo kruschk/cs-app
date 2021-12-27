@@ -1,0 +1,8 @@
+This function is implicitly reentrant because it accepts an `unsigned
+int *`. If a pointer to a shared variable is passed to the procedure, it
+loses its reentrancy (by definition, reentrant functions do not share
+data between threads). As long as the provided argument is not shared,
+the procedure maintains its reentrancy, hence the term "implicitly
+reentrant". If the procedure accepted a plain `unsigned int` rather than
+a pointer, it would be explicitly reentrant, rendering this
+consideration null and void.

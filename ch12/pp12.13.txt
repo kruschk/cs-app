@@ -1,0 +1,6 @@
+Freeing the allocated memory immediately after the peer thread is
+created creates a race condition. If the peer thread happens to be
+scheduled to save the `myid` variable before the main thread `free`s the
+allocated memory, the behaviour will be correct, but if the main thread
+is scheduled to `free` the allocated memory before the peer can save
+`myid`, the behaviour is undefined.

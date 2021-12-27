@@ -1,0 +1,6 @@
+If there is a large number of writers waiting to unlock the mutex, and
+only a handful of readers (or just one), the operating system would
+likely prioritise the writer threads, thus starving the reader(s). To
+make the reader priority stronger, some further controls are needed.
+
+Note: the book describes a better example.

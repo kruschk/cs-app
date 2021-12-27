@@ -1,0 +1,2 @@
+The call to `select` returns the number of ready descriptors, so we
+assign `pool.nready` to match.

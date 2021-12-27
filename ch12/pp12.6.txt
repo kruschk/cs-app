@@ -1,0 +1,17 @@
+A.
+
+Variable | Referenced by...
+instance | main thread? | peer thread 0? | peer thread 1?
+---------+--------------+----------------+---------------
+ptr      | Yes          | Yes            | Yes
+cnt      | No           | Yes            | Yes
+i.m      | Yes          | No             | No
+msgs.m   | Yes          | Yes (via ptr)  | Yes (via ptr)
+myid.p0  | No           | Yes            | No
+myid.p1  | No           | No             | Yes
+
+B.
+
+Shared variables are those that are referenced by more than one thread.
+From the table, it is clear that ptr, cnt, and msgs are all shared
+variables.

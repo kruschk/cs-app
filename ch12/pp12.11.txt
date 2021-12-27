@@ -1,0 +1,13 @@
+Sp = T1 / Tp
+
+Ep = Sp / p = T1 / (p*Tp)
+
+Threads (t)       |     1 |    4 |    8
+Cores (p)         |     1 |    4 |    8
+------------------+-------+------+-----
+Running time (Tp) |    16 |    8 |    4
+Speedup (Sp)      |     1 |    2 |    4
+Efficiency (Ep)   | 100 % | 50 % | 50 %
+
+Note: the book says the bottom-rightmost entry should be 25 %, but I
+don't see how this is possible.

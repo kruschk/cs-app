@@ -1,0 +1,10 @@
+Either deletion will result in a memory leak.
+
+If line 31 is removed, the new thread will remain joinable, so its
+memory resources will not be freed until some thread reaps it with a
+call to `pthread_join`. Since no thread explicitly reaps it, these
+thread resources will never be freed, resulting in a significant memory
+leak from each new thread.
+
+If line 32 is removed, `sizeof int` bytes will leak each time a new
+thread is spooled.

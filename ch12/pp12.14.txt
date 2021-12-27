@@ -1,0 +1,28 @@
+I can think of two ways to achieve the desired behaviour:
+
+1.A.
+
+Pass the integer ID by value to the new thread by casting it to a `void
+*`, i.e., `pthread_create(&tid[i], NULL, thread, (void *)i)`. Then, in
+the new thread, cast the pointer back to the original type (`int` in
+this case).
+
+1.B.
+
+The advantage is in the elimination of dynamic memory allocation,
+(likely) improving run-time performance. The disadvantages are that the
+cast assumes a `void *` is at least as large as an `int`, which may not
+be a valid assumption on certain systems; and it is also an ugly hack
+that the compiler might complain about.
+
+2.A.
+
+Use a C array to store each integer ID, and pass a reference to the
+appropriate array element.
+
+2.B.
+
+The advantages are that no dynamic memory allocation is required,
+simplifying the code and (likely) increasing run-time performance
+slightly. The disadvantages are this change inflates the memory
+footprint of the binary slightly.

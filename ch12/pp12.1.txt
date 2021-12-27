@@ -1,0 +1,77 @@
+After the call to open_listenfd, assume we have the following file
+descriptor table and file table reference counts:
+
+Line 23 (open_listenfd(argv[1])):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              1
+               stdout |                              1
+               stderr |                              1
+             listenfd |                              1
+               connfd |                              0
+
+Line 26 (accept(listenfd, (SA *) &clientaddr, &clientlen)):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              1
+               stdout |                              1
+               stderr |                              1
+             listenfd |                              1
+               connfd |                              1
+
+Line 27 (fork()):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              2
+               stdout |                              2
+               stderr |                              2
+             listenfd |                              2
+               connfd |                              2
+
+Line 29 (close(listenfd)):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              2
+               stdout |                              2
+               stderr |                              2
+             listenfd |                              1
+               connfd |                              2
+
+Line 30 (close(connfd)):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              2
+               stdout |                              2
+               stderr |                              2
+             listenfd |                              1
+               connfd |                              1
+
+Line 31 (exit(0)):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              1
+               stdout |                              1
+               stderr |                              1
+             listenfd |                              1
+               connfd |                              1
+
+Line 33 (close(connfd)):
+
+File descriptor table | Associated file table refcount
+----------------------+-------------------------------
+                stdin |                              1
+               stdout |                              1
+               stderr |                              1
+             listenfd |                              1
+               connfd |                              0
+
+We can see that our file table reference counts have returned to the
+state they were in after calling `open_listenfd`. At this point, the
+while loop reiterates, repeating the state changes described above.
+There is no memory leak.
